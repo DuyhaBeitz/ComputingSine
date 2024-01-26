@@ -26,8 +26,3 @@ double taylor_siries_sine(double x, unsigned n)
 
     return siries_value * func_sign * Sign(x);
 }
-
-double taylor_sin_one_arg(double x)
-{
-    return double(taylor_siries_sine(x, 6));
-}

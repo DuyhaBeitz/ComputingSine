@@ -7,6 +7,16 @@
 //draw_func
 #include "../Headers/pbPlots/draw_func.cpp"
 
+float table_sine_rad(float x)
+{
+    return table_sine(int(Degrees(x)));
+} 
+
+double taylor_sin_one_arg(double x)
+{
+    return double(taylor_siries_sine(x, 6));
+}
+
 int main()
 {
     double pi = 3.141592654;

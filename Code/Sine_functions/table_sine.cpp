@@ -125,8 +125,3 @@ float table_sine(int x)
     return table[abs_x] * func_sign * Sign(x);
 
 }
-
-float table_sine_rad(float x)
-{
-    return table_sine(int(Degrees(x)));
-} 

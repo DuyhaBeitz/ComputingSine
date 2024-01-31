@@ -1,6 +1,11 @@
-#include "pbPlots.hpp"
-#include "supportLib.hpp"
+#include "../pbPlots/pbPlots.hpp"
+#include "../pbPlots/supportLib.hpp"
+#include <streambuf>
 #include <vector>
+
+#include <filesystem>
+
+namespace fs = std::filesystem;
 
 void plot(std::vector<double> x, std::vector<double> y, double width, double high, std::string name)
 {
@@ -10,9 +15,19 @@ void plot(std::vector<double> x, std::vector<double> y, double width, double hig
 
     DrawScatterPlot(imageRef, width, high, &x, &y, &errorString);
 
+    fs::path newDirectoryPath = "Images";
+
+    // Create the directory
+    if (!fs::exists(newDirectoryPath))
+    {
+        fs::create_directories(newDirectoryPath);
+        std::cout << "Directory created successfully.\n";
+    }
+
     std::string full_name = "Images/" + name;
 
     std::vector<double> *pngData = ConvertToPNG(imageRef->image);
+
     WriteToFile(pngData, full_name);
     DeleteImage(imageRef->image);
 }

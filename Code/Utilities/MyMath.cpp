@@ -1,6 +1,6 @@
-#ifndef MY_MATH
-#define MY_MATH
 #include <cmath>
+
+#pragma once
 
 template<typename T>
 int Sign(T Value)
@@ -11,7 +11,7 @@ int Sign(T Value)
     return 1;
 }
 
-inline unsigned Factorial(unsigned x)
+unsigned Factorial(unsigned x)
 {
     unsigned fac = 1;
     for (unsigned i = 1; i <= x; i++)
@@ -21,14 +21,12 @@ inline unsigned Factorial(unsigned x)
     return fac;
 }
 
-constexpr inline double Radians(double AngleInDegrees)
+constexpr double Radians(double AngleInDegrees)
 {
     return AngleInDegrees * M_PI / 180 ; 
 }
 
-constexpr inline double Degrees(double AngleInRadians)
+constexpr double Degrees(double AngleInRadians)
 {
     return AngleInRadians * 180 / M_PI; 
 }
-
-#endif

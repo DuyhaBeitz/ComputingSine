@@ -1,5 +1,5 @@
 #include <cmath>
-#include "../Headers/MyMath.hpp"//Sign()
+#include "../Utilities/MyMath.cpp"//Sign()
 
 //accept angles from 0 to 90
 float table[91] = {
@@ -123,5 +123,23 @@ float table_sine(int x)
     }
     
     return table[abs_x] * func_sign * Sign(x);
+}
 
+float table_sine_smooth(float x)
+{
+    x = Degrees(x);
+    int i = int(x);
+
+    float y_change = table_sine(i + 1) - table_sine(i);
+    if (y_change > 0)
+    {
+        return table_sine(i) + y_change * (x - i);
+    }
+
+    if (y_change < 0)
+    {
+        return table_sine(i) - (-y_change * (x - i));
+    }
+
+    return table_sine(i);
 }

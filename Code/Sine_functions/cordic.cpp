@@ -1,6 +1,5 @@
 #include <cmath>
-#include "../Headers/sine_helper.hpp"//rage reduction helper
-#include "../Headers/MyMath.hpp"//Sign()
+#include "../Utilities/sine_helper.cpp"//rage reduction helper
 
 float angles[15] = {
     0.78539816339744827899949086713604629039764404296875,
@@ -45,5 +44,5 @@ double cordic_sine(double angle) {
         z -= direction * angles[i];
     }
 
-    return y * K * func_sign * Sign(angle);
+    return y * K * func_sign;
 }

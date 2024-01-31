@@ -1,6 +1,6 @@
 #include <cmath>
-#include "../Headers/MyMath.hpp"//Factorial()
-#include "../Headers/sine_helper.hpp"//range reduction
+#include "../Utilities/MyMath.cpp"//Factorial()
+#include "../Utilities/sine_helper.cpp"//range reduction
 
 double taylor_siries_sine(double x, unsigned n)
 {
@@ -24,5 +24,5 @@ double taylor_siries_sine(double x, unsigned n)
         siries_value += a * b / c;
     }
 
-    return siries_value * func_sign * Sign(x);
+    return siries_value * func_sign;
 }

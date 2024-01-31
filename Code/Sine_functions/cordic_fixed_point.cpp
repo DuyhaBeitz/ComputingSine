@@ -1,6 +1,5 @@
-#include "../Headers/fp_num.hpp"//fixed point number
-#include "../Headers/sine_helper.hpp"//range reduction helper
-#include "../Headers/MyMath.hpp"//Sign()
+#include "../Utilities/fp_num.hpp"//fixed point number
+#include "../Utilities/sine_helper.cpp"//range reduction helper
 
 float angles_lut[15] = {
     0.78539816339744827899949086713604629039764404296875,
@@ -52,5 +51,5 @@ double CordicSineFPN(double angle)
         z -= direction * angles_lut[i];
     }
 
-    return double(y) * k * func_sign * Sign(angle);
+    return double(y) * k * func_sign;
 }

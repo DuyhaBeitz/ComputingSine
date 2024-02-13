@@ -1,7 +1,8 @@
-#include "../Utilities/fp_num.hpp"//fixed point number
+#include "../fpm/fixed.hpp" //fixed point math
+
 #include "../Utilities/sine_helper.cpp"//range reduction helper
 
-float angles_lut[15] = {
+double angles_lut[15] = {
     0.78539816339744827899949086713604629039764404296875,
     0.46364760900080609351547877849952783435583114624023,
     0.24497866312686414347332686247682431712746620178223,
@@ -19,18 +20,20 @@ float angles_lut[15] = {
     0.00006103515617420877259350145416227917394280666485,
 };
 
-double CordicSineFPN(double angle)
+double cordic_sine_FPN(double angle)
 {
     //range reduction
-    const double limited_angle = sine_mirror_angle(angle);
-    const int func_sign = sine_func_sign(angle);
+    const double limited_angle = reduce_angle(angle);
+    const int func_sign = sine_sign(angle);
 
     // Constants for CORDIC calculations
-    constexpr double k = 0.607252935385914;//cos(angles_lut[0]) * cos(angles_lut[1]) ...
+    constexpr double k = 0.60725293538591362807;//cos(angles_lut[0]) * cos(angles_lut[1]) ...
     constexpr int iterations = 15;
 
     //vector (1, 0)
-    fixed<int32_t, int64_t, 30> x(1.0), y(0.0);
+    using fxd_pnt_nmbr = fpm::fixed<int32_t, int64_t, 30>;
+    fxd_pnt_nmbr x(1), y(0), new_x(0), new_y(0);
+    
     //angle to rotate vector
     double z = limited_angle;
 
@@ -40,12 +43,12 @@ double CordicSineFPN(double angle)
         int direction = (z >= 0) ? 1 : -1;
 
         //calculate coords after rotation
-        int32_t new_x = x.value - (direction * y.value >> i );
-        int32_t new_y = y.value + (direction * x.value >> i );
+        new_x = x - (direction * fxd_pnt_nmbr::from_raw_value(y.raw_value() >> i));
+        new_y = y + (direction * fxd_pnt_nmbr::from_raw_value(x.raw_value() >> i));
 
         //assign them
-        x.value = new_x;
-        y.value = new_y;
+        x = new_x;
+        y = new_y;
 
         //angle
         z -= direction * angles_lut[i];

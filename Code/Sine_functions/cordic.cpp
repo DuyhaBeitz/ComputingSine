@@ -1,7 +1,7 @@
 #include <cmath>
 #include "../Utilities/sine_helper.cpp"//rage reduction helper
 
-float angles[15] = {
+double angles[15] = {
     0.78539816339744827899949086713604629039764404296875,
     0.46364760900080609351547877849952783435583114624023,
     0.24497866312686414347332686247682431712746620178223,
@@ -19,21 +19,22 @@ float angles[15] = {
     0.00006103515617420877259350145416227917394280666485,
 };
 
-double cordic_sine(double angle) {
-    // Constants for CORDIC calculations
-    static constexpr double K = 0.607252935385914;
-    static constexpr int iterations = 15;
-
+double cordic_sine(double angle)
+{
     //range reduction
-    double limited_angle = sine_mirror_angle(angle);
-    int func_sign = sine_func_sign(angle);
+    const double reduced_angle = reduce_angle(angle);
+    const int func_sign = sine_sign(angle);
 
-    double x = 1.0, y = 0.0, z = limited_angle;
+    // Constants for CORDIC calculations
+    constexpr double K = 0.607252935385914;
+    constexpr int iterations = 15;
+
+    double x = 1.0, y = 0.0, z = reduced_angle;
 
     for (int i = 0; i < iterations; ++i) {
         
         //choose direction
-        int direction = (z >= 0) ? 1 : -1;
+        int direction = Sign(z);
 
         //rotate vector
         double new_x = x - direction * y * std::pow(2, -i);

@@ -1,9 +1,9 @@
 #include <cmath>
-#include "MyMath.cpp"
+#include "basic_math.cpp"
 
 #pragma once
 
-double sine_mirror_angle(double angle)
+double reduce_angle(double angle)
     {
         double abs_angle = std::abs(angle);
 
@@ -19,16 +19,12 @@ double sine_mirror_angle(double angle)
         return abs_angle;
     }
 
-int sine_func_sign(double angle)
+int sine_sign(double angle)
     {
         double abs_angle = std::abs(angle);
-        int func_sign = 1;
-        int period_even = (int(abs_angle / M_PI) % 2 == 0);
+        bool half_period_even = (int(abs_angle / M_PI) % 2 == 0);
 
-        if (!period_even)
-        {
-            func_sign = -1;
-        }
+        if (!half_period_even) return -Sign(angle);
 
-        return func_sign * Sign(angle);
+        return Sign(angle);
     }

@@ -1,6 +1,7 @@
+#include "Headers/cordic_fixed_point.h"
 #include "../fpm/fixed.hpp" //fixed point math
-
-#include "../Utilities/sine_helper.cpp"//range reduction helper
+#include "../Utilities/Headers/basic_math.h"
+#include "../Utilities/Headers/sine_helper.h"//range reduction helper
 
 double angles_lut[15] = {
     0.78539816339744827899949086713604629039764404296875,
@@ -37,10 +38,9 @@ double cordic_sine_FPN(double angle)
     //angle to rotate vector
     double z = limited_angle;
 
-    for (int i = 0; i < iterations; ++i) {
-            
+    for (int i = 0; i < iterations; ++i) { 
         //direction of rotation
-        int direction = (z >= 0) ? 1 : -1;
+        int direction = Sign(z);
 
         //calculate coords after rotation
         new_x = x - (direction * fxd_pnt_nmbr::from_raw_value(y.raw_value() >> i));

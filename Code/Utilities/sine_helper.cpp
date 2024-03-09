@@ -1,7 +1,6 @@
+#include "Headers/sine_helper.h"
+#include "Headers/basic_math.h"
 #include <cmath>
-#include "basic_math.cpp"
-
-#pragma once
 
 double reduce_angle(double angle)
     {

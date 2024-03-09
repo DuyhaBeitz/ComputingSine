@@ -1,6 +1,8 @@
+#include "Headers/table_sine.h"
 #include <cmath>
 #include <iostream>
-#include "../Utilities/sine_helper.cpp"//Sign()
+#include "../Utilities/Headers/basic_math.h"
+#include "../Utilities/Headers/sine_helper.h"//range reduction helper
 
 //accept angles from 0 to 90
 double table[91] = {

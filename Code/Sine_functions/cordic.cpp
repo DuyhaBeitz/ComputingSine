@@ -1,5 +1,7 @@
+#include "Headers/cordic.h"
 #include <cmath>
-#include "../Utilities/sine_helper.cpp"//rage reduction helper
+#include "../Utilities/Headers/basic_math.h"
+#include "../Utilities/Headers/sine_helper.h"//range reduction helper
 
 double angles[15] = {
     0.78539816339744827899949086713604629039764404296875,

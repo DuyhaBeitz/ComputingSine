@@ -26,24 +26,24 @@ int main() {
 	std::cin >> increment;
 
 	std::cout << "\nДля ряда Тейлора\n";
-    std::cout << "максимальная абсолютная погрешность: " << max_abs_sine_error(taylor_series_sine, increment, start, end);
-    std::cout << "\nсредняя абсолютная погрешность: "	 << avg_abs_sine_error(taylor_series_sine, increment, start, end);
+	std::cout << "максимальная абсолютная погрешность: " << max_abs_sine_error(taylor_series_sine, increment, start, end);
+	std::cout << "\nсредняя абсолютная погрешность: "	 << avg_abs_sine_error(taylor_series_sine, increment, start, end);
 
 	
 	std::cout << "\n\nДля табличных значений\n";
-    std::cout << "максимальная абсолютная погрешность: " << max_abs_sine_error(table_sine, increment, start, end);
-    std::cout << "\nсредняя абсолютная погрешность: "	 << avg_abs_sine_error(table_sine, increment, start, end);
+	std::cout << "максимальная абсолютная погрешность: " << max_abs_sine_error(table_sine, increment, start, end);
+	std::cout << "\nсредняя абсолютная погрешность: "	 << avg_abs_sine_error(table_sine, increment, start, end);
 
 	std::cout << "\n\nДля табличных значений с интерполяцией\n";
-    std::cout << "максимальная абсолютная погрешность: " << max_abs_sine_error(table_sine_interp, increment, start, end);
-    std::cout << "\nсредняя абсолютная погрешность: "	 << avg_abs_sine_error(table_sine_interp, increment, start, end);
+	std::cout << "максимальная абсолютная погрешность: " << max_abs_sine_error(table_sine_interp, increment, start, end);
+	std::cout << "\nсредняя абсолютная погрешность: "	 << avg_abs_sine_error(table_sine_interp, increment, start, end);
 
 	std::cout << "\n\nДля CORDIC (число с плавающей запятой)\n";
-    std::cout << "максимальная абсолютная погрешность: " << max_abs_sine_error(cordic_sine, increment, start, end);
-    std::cout << "\nсредняя абсолютная погрешность: "	 << avg_abs_sine_error(cordic_sine, increment, start, end);
+	std::cout << "максимальная абсолютная погрешность: " << max_abs_sine_error(cordic_sine, increment, start, end);
+	std::cout << "\nсредняя абсолютная погрешность: "	 << avg_abs_sine_error(cordic_sine, increment, start, end);
 
 	std::cout << "\n\nДля CORDIC (число с фиксированной запятой)\n";
-    std::cout << "максимальная абсолютная погрешность: " << max_abs_sine_error(cordic_sine_FPN, increment, start, end);
-    std::cout << "\nсредняя абсолютная погрешность: "	 << avg_abs_sine_error(cordic_sine_FPN, increment, start, end);
+	std::cout << "максимальная абсолютная погрешность: " << max_abs_sine_error(cordic_sine_FPN, increment, start, end);
+	std::cout << "\nсредняя абсолютная погрешность: "	 << avg_abs_sine_error(cordic_sine_FPN, increment, start, end);
 
 }
